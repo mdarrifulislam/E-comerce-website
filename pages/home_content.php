@@ -1,8 +1,13 @@
 <?php
-$query_result = $obj_app->select_all_recent_product_info();
+if (isset($_GET['search_string'])) {
+    $search_string = $_GET['search_string'];
+    $query_result = $obj_app->select_info_by_search($search_string);
+} else {
+    $query_result = $obj_app->select_all_recent_product_info();
+}
 ?>
-<section id="slider"><!--slider-->
-     <div class="container">
+<section id="slider"> 
+    <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -15,7 +20,7 @@ $query_result = $obj_app->select_all_recent_product_info();
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-6">
-                                <h1><span>Online</span>-Shopping</h1>
+                                <h1><span style="color: #002a80;">Online</span>-Shopping</h1>
                                 <h2>E-Commerce Website</h2>
                                 <p>Be Logical, Be Smart</p>
 
@@ -27,7 +32,7 @@ $query_result = $obj_app->select_all_recent_product_info();
                         </div>
                         <div class="item">
                             <div class="col-sm-6">
-                                <h1><span>Online</span>-Shopping</h1>
+                                <h1><span style="color: #002a80;">Online</span>-Shopping</h1>
                                 <h2>High quality products.</h2>
                                 <p>Be Logical, Be Smart..</p>
 
@@ -40,7 +45,7 @@ $query_result = $obj_app->select_all_recent_product_info();
 
                         <div class="item">
                             <div class="col-sm-6">
-                                <h1><span>Online</span>-Shopping</h1>
+                                <h1><span style="color: #002a80;">Online</span>-Shopping</h1>
                                 <h2>100% Responsive Design</h2>
                                 <p>Be Logical, Be Smart..</p>
                             </div>
@@ -63,7 +68,7 @@ $query_result = $obj_app->select_all_recent_product_info();
             </div>
         </div>
     </div>
-</section><!--/slider-->
+</section>
 
 <section>
     <div class="container">
@@ -72,28 +77,28 @@ $query_result = $obj_app->select_all_recent_product_info();
 
             <div class="col-sm-12 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Recent Items</h2>
+                    <h2 class="title text-center">Recent Items </h2>
 
                     <?php while ($product_info = mysqli_fetch_assoc($query_result)) { ?>
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
-                                <div class="single-products">
+                                <div class="single-products"> 
                                     <div class="productinfo text-center">
                                         <img src="assets/<?php echo $product_info['product_image']; ?>" alt="" width="200px" height="200px"/>
-                                        <h2>BDT<?php echo $product_info['product_price']; ?></h2>
-                                        <p><?php echo $product_info['product_name']; ?></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <p>BDT<?php echo $product_info['product_price']; ?></p>
+                                        <h3><?php echo $product_info['product_name']; ?></h3>
+                                        <a href="#" class="btn btn-default add-to-cart"></i>Product Details</a>
                                     </div>
                                     <div class="product-overlay">
                                         <div class="overlay-content">
-                                            <h2>BDT<?php echo $product_info['product_price']; ?> </h2>
-                                            <p><?php echo $product_info['product_name']; ?></p>
+                                            <p>BDT<?php echo $product_info['product_price']; ?></p>
+                                            <h3><?php echo $product_info['product_name']; ?></h3>
                                             <a href="product_details.php?id=<?php echo $product_info['product_id']; ?>" class="btn btn-default add-to-cart">Product Details</a>
                                         </div>
                                     </div>
                                 </div>
-                                <!--                                    -->
                             </div>
+
                         </div>
                     <?php } ?>
                 </div> 

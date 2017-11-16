@@ -1,6 +1,5 @@
 <?php
-
-
+ 
 if (isset($_POST['btn'])) {
     $obj_app->customer_resgistration_info($_POST);
 }
@@ -19,6 +18,7 @@ if (isset($_POST['login_btn'])) {
                         <div class="col-lg-6">
                             <div class="well">
                                 <h3 class="text-center text-success">Registration Point Here.</h3>
+                                
                                 <hr>
                                 <form role="form" class="form-horizontal" action="" method="post">
                                     <div class="form-group">

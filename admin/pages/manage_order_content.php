@@ -1,13 +1,14 @@
 <?php
-if(isset($_GET['status'])){
-    $order_id=$_GET['id'];
-    $message= $obj_super_admin->delete_order_info($order_id);
+if (isset($_GET['status'])) {
+    $order_id = $_GET['id'];
+    if ($_GET['status'] == 'delete') {
+        $message = $obj_super_admin->delete_order_info($order_id);
+    }
 }
 
 
 
- $query_result= $obj_super_admin->select_all_order_info();
- 
+$query_result = $obj_super_admin->select_all_order_info();
 ?>
 
 
@@ -46,39 +47,38 @@ if(isset($_GET['status'])){
                         <th>Order Total</th>
                         <th>Order Date</th>
                         <th>Order Status</th>
-                        <th>Payment Amount</th>
-                         <th>Actions</th> 
+                        <th>Actions</th> 
                     </tr>
                 </thead>   
                 <tbody>
-             <?php while ($order_info=  mysqli_fetch_assoc($query_result)){?>
-                    <tr>
-                        <td><?php echo $order_info['order_id'];?></td>
-                        <td class="center"><?php echo $order_info['first_name'].' '.$order_info['last_name'];?></td>
-                        <td class="center"><?php echo $order_info['order_total'];?></td>
-                        <td class="center"><?php echo $order_info['order_date'];?></td>
-                        <td class="center"><?php echo $order_info['order_status'];?></td>
+                    <?php while ($order_info = mysqli_fetch_assoc($query_result)) { ?>
+                        <tr>
+                            <td><?php echo $order_info['order_id']; ?></td>
+                            <td class="center"><?php echo $order_info['first_name'] . ' ' . $order_info['last_name']; ?></td>
+                            <td class="center"><?php echo $order_info['order_total']; ?></td>
+                            <td class="center"><?php echo $order_info['order_date']; ?></td>
+                            <td class="center"><?php echo $order_info['order_status']; ?></td>
 
-                        <td class="center"><?php echo $order_info['payment_status'];?></td>
-                        <td class="center">
-
-                            <a class="btn btn-info" href="view_order.php?id=<?php echo $order_info['order_id'];?>" title="View Order details">
-                                <i class="halflings-icon white zoom-in"></i>  
-                            </a>
-                            <a class="btn btn-default" href="view_invoice.php?id=<?php echo $order_info['order_id'];?>" title="View Invoice">
-                                <i class="halflings-icon white zoom-in"></i>  
-                            </a>
-                           
                             
-                            <a class="btn btn-success" href="" title="Edit Order">
-                                <i class="halflings-icon white edit"></i>  
-                             </a>
-                            <a class="btn btn-danger" href="?status=delete&&id=<?php echo $order_info['order_id'];?>" title="Delete Order" onclick="return check_delete_info();">
-                                <i class="halflings-icon white trash"></i> 
-                            </a>
-                        </td>
-                    </tr>
-             <?php }?>
+                            <td class="center">
+
+                                <a class="btn btn-info" href="view_order.php?id=<?php echo $order_info['order_id']; ?>" title="View Order details">
+                                    <i class="halflings-icon white zoom-in"></i>  
+                                </a>
+                                <a class="btn btn-default" href="view_invoice.php?id=<?php echo $order_info['order_id']; ?>" title="View Invoice">
+                                    <i class="halflings-icon white zoom-in"></i>  
+                                </a>
+
+
+                                <a class="btn btn-success" href="edit_order.php?id=<?php echo $order_info['order_id'] ;?>" title="Edit Order">
+                                    <i class="halflings-icon white edit"></i>  
+                                </a>
+                                <a class="btn btn-danger" href="?status=delete&&id=<?php echo $order_info['order_id']; ?>" title="Delete Order" onclick="return check_delete_info();">
+                                    <i class="halflings-icon white trash"></i> 
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>            
         </div>

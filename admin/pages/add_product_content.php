@@ -3,6 +3,7 @@
    $obj_app=new Application();
    
    $category_result=$obj_app->select_all_category();
+   $sub_category_result=$obj_app->select_all_sub_category();
    $manufacturer_result=$obj_app->select_all_publish_manufacturer_info();
    
    if(isset($_POST['btn_save'])){
@@ -44,6 +45,17 @@
                         </div>
                     </div>
                     <div class="control-group">
+                        <label class="control-label" for="selectError3">Sub Category Name</label>
+                        <div class="controls">
+                            <select id="selectError3" name="sub_category_id">
+                                <option>Select Sub Category </option>
+                                <?php while ($sub_category_info=  mysqli_fetch_assoc($sub_category_result)){?> 
+                                <option value="<?php echo $sub_category_info['sub_category_id'];?>"><?php echo $sub_category_info['sub_category_name'];?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="selectError3">Manufacturer Name</label>
                         <div class="controls">
                             <select id="selectError3" name="manufacturer_id">
@@ -68,16 +80,6 @@
                             <input type="number" class="span6 typeahead" name="stock_quantity" id="typeahead"  data-provide="typeahead" data-items="4"  data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
                        </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="typeahead">Product SKU</label>
-                        <div class="controls">
-                            <input type="number" class="span6 typeahead" name="product_sku" id="typeahead"  data-provide="typeahead" data-items="4"  data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
-                       </div>
-                    </div>
-                    
-                    
-
-
                     <div class="control-group hidden-phone">
                         <label class="control-label" for="textarea2">Product Short Description</label>
                         <div class="controls">

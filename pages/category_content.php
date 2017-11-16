@@ -1,10 +1,13 @@
 <?php
-$category_id = $_GET['id'];
-$query_result = $obj_app->select_published_product_by_id($category_id);
+if (isset($_GET['search_string'])) {
+    $search_string = $_GET['search_string'];
+    $query_result = $obj_app->select_info_by_search($search_string);
+} else {
+
+    $category_id = $_GET['id'];
+    $query_result = $obj_app->select_published_product_by_id($category_id);
+}
 ?>
-
-
-
 <section id="advertisement">
     <div class="container">
         <img src="assets/font_end_assets/images/shop/advertisement.jpg" alt="" />
@@ -23,14 +26,14 @@ $query_result = $obj_app->select_published_product_by_id($category_id);
                                 <div class="single-products">
                                     <div class="productinfo text-center">
                                         <img src="pages/<?php echo $category_product['product_image']; ?>" alt="<?php echo $category_product['product_name']; ?>" height="200px" width="200px"/>
-                                        <h2><?php echo $category_product['product_price']; ?></h2>
-                                        <p><?php echo $category_product['product_name']; ?></p>
-                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <p><?php echo $category_product['product_price']; ?></p>
+                                        <h3><?php echo $category_product['product_name']; ?></h3>
+                                        <a href="#" class="btn btn-default add-to-cart">Product Details</a>
                                     </div>
                                     <div class="product-overlay">
                                         <div class="overlay-content">
-                                            <h2><?php echo $category_product['product_price']; ?></h2>
-                                            <p><?php echo $category_product['product_name']; ?></p>
+                                            <p><?php echo $category_product['product_price']; ?></p>
+                                            <h3><?php echo $category_product['product_name']; ?></h3>
                                             <a href="product_details.php?id=<?php echo $category_product['product_id']; ?>" class="btn btn-default add-to-cart">Product Details</a>
                                         </div>
                                     </div>

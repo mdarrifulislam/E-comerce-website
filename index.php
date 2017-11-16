@@ -60,7 +60,21 @@ $obj_app = new Application();
                 include './pages/login_content.php';
             }elseif ($pages == 'profile') {
                 include './pages/profile_content.php';
+            }elseif ($pages == 'our_products') {
+                include './pages/our_products_content.php';
+            }elseif ($pages == 'sub_category') {
+                include './pages/sub_category_content.php';
+            }elseif ($pages == 'search_result') {
+                include './pages/search_result_content.php';
+            }elseif ($pages == 'contact') {
+                include './pages/contact_us_content.php';
+            }elseif ($pages == 'get_voucher') {
+                include './pages/get_voucher_content.php';
+            }elseif ($pages == 'view_order') {
+                include './pages/view_order_content.php';
             }
+            
+            
         } else {
             include './pages/home_content.php';
         }

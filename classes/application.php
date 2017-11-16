@@ -24,6 +24,15 @@ class Application {
             die("Query Problem" . mysqli_error($this->db_connect));
         }
     }
+    public function select_all_sub_category(){
+        $sql = "SELECT * FROM tbl_sub_category WHERE publication_status=1";
+        if (mysqli_query($this->db_connect, $sql)) {
+            $sub_query_result = mysqli_query($this->db_connect, $sql);
+            return $sub_query_result;
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        }
+    }
 
     public function select_all_publish_manufacturer_info() {
         $sql = "SELECT * FROM tbl_manufacturer WHERE publication_status=1";
@@ -54,6 +63,18 @@ class Application {
             die("Query Problem" . mysqli_error($this->db_connect));
         }
     }
+    public function select_published_sub_product_by_id($sub_category_id){
+        $sql = "SELECT * FROM tbl_product WHERE sub_category_id='$sub_category_id' AND publication_status=1";
+        if (mysqli_query($this->db_connect, $sql)) {
+            $sub_query_result = mysqli_query($this->db_connect, $sql);
+            return $sub_query_result;
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        }
+    }
+
+    
+
 
     public function select_product_info_by_id($product_id) {
         $sql = "SELECT p.*,c.category_name,m.manufacturer_name FROM tbl_product as p,tbl_category as c,tbl_manufacturer as m WHERE p.category_id=c.category_id AND p.manufacturer_id=m.manufacturer_id AND p.product_id='$product_id' ";
@@ -119,12 +140,10 @@ class Application {
     }
 
     public function save_customer_info($data) {
-        $password = md5($data['password']);
+        $password=$data['password'];
         $sql = "INSERT INTO tbl_customer (first_name,last_name,email_address,password,address,phone_number,district_name) VALUES ('$data[first_name]','$data[last_name]','$data[email_address]','$password','$data[address]','$data[phone_number]','$data[district_name]')";
-
-        if (mysqli_query($this->db_connect, $sql)) {
+           if (mysqli_query($this->db_connect, $sql)) {
             $customer_id = mysqli_insert_id($this->db_connect);
-
             $_SESSION['customer_id'] = $customer_id;
             $_SESSION['customer_name'] = $data['first_name'] . ' ' . $data['last_name'];
             /*customer email verification start*/
@@ -212,14 +231,33 @@ class Application {
     }
 
     public function customer_resgistration_info($data) {
-        $sql = "INSERT INTO tbl_customer (first_name,last_name,email_address,password,address,phone_number,district_name) VALUES ('$data[first_name]','$data[last_name]','$data[email_address]','$password','$data[address]','$data[phone_number]','$data[district_name]')";
-        $password = md5(data['password']);
+        
+        $sql = "INSERT INTO tbl_customer (first_name,last_name,email_address,password,address,phone_number,district_name) VALUES ('$data[first_name]','$data[last_name]','$data[email_address]','$data[password]','$data[address]','$data[phone_number]','$data[district_name]')";
         if (mysqli_query($this->db_connect, $sql)) {
             $customer_id = mysqli_insert_id($this->db_connect);
             session_start();
             $_SESSION['customer_id'] = $customer_id;
             $_SESSION['customer_name'] = $data['first_name'] . ' ' . $data['last_name'];
-
+            $_SESSION['message']="Registration Successfully Completed";
+            
+             /*customer email verification start*/
+           $to=$data[email_address];
+           $subject="email_address";
+            $message="
+                    <h3> Wellcome $data[first_name]  $data[last_name].</h3><br/>
+                    <p>Thanks for join our community.</p><br/>
+                     <h4><u>your login information goes here</u></h4><br/>
+                    <p>Your email address :$data[email_address]</p><br/>
+                        <p>Your password : $data[password]</p><br/>
+                     <h2>To active press on the link</h2>                             
+                 <a href=' http://localhost/ecomerce_project/customer_update status.php/id?=$customer_id'>
+                 http://localhost/ecomerce_project/customer_update status/id=$customer_id
+                 </a>
+ ";
+                
+          mail($to, $subject, $message);
+              /*Email verification End */   
+            
             header("Location: index.php");
         } else {
             die("Query Problem" . mysqli_error($this->db_connect));
@@ -234,8 +272,10 @@ class Application {
              die("Query Problem" . mysqli_error($this->db_connect));
         }
     }
+  
+
     public function select_order_info($customer_id){
-        $sql="SELECT tod.*,td.* FROM tbl_order_details as tod, tbl_order as td WHERE  td.order_id=tod.order_id AND td.customer_id='$customer_id' ";
+        $sql="SELECT tod.*,td.* FROM tbl_order_details as tod, tbl_order as td WHERE  td.order_id=tod.order_id AND td.customer_id='$customer_id' ORDER BY product_id DESC";
         if(mysqli_query($this->db_connect, $sql)){
             $query_result=mysqli_query($this->db_connect, $sql);
             return $query_result;
@@ -286,25 +326,44 @@ class Application {
     }
     public function customer_login_check($data) {
         $email_address = $data['email_address'];
-        $password = md5($data['password']);
+        $password = $data['password'];
         $sql = "SELECT * FROM tbl_customer WHERE email_address='$email_address' AND password='$password' ";
         if (mysqli_query($this->db_connect, $sql)) {
             $query_result = mysqli_query($this->db_connect, $sql);
             $customer_info = mysqli_fetch_assoc($query_result);
-
+ 
             if ($customer_info) {
                 session_start();
-                $_SESSION['customer_name'] = $customer_info['first_name'].' '.$customer_info['last_name'];
-                $_SESSION['customer_id'] = $customer_info['customer_id'];
-                header("Location: index.php");
+                $_SESSION['customer_name']=$customer_info['first_name'].' '.$customer_info['last_name'];
+                $_SESSION['customer_id']=$customer_info['customer_id'];
+                header("Location:index.php");
             } else {
                 $message = "Please, use valid email address and password";
                 return $message;
-            }
+            } 
         } else {
             die('Query Problem' . mysqli_error($this->db_connect));
         }
     }
+    public function select_info_by_search($search_string){
+        $sql="SELECT * FROM tbl_product WHERE product_name LIKE '%$search_string%'  ";
+        if (mysqli_query($this->db_connect, $sql)){
+            $query_result=mysqli_query($this->db_connect, $sql);
+            return $query_result;
+        }
+    }
+    public function customer_contact_info($data){
+        $sql="INSERT INTO tbl_contact (full_name, email_address, message) VALUES ('$data[full_name]','$data[email_address]','$data[message]') ";
+        if(mysqli_query($this->db_connect, $sql)){
+            $message="Message send successfully ";
+            return $message;
+        }  else {
+            die("Query Problem".mysqli_error($this->db_connect));    
+        }
+    }
+    
+    
+    
 
     public function customer_logout() {
         unset($_SESSION['customer_id']);

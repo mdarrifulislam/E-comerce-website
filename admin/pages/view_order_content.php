@@ -103,10 +103,7 @@
                     <th>Payment Type</th>
                     <td><?php echo $payment_info['payment_type'];?></td>
                 </tr>
-                <tr>
-                    <th>Payment Status</th>
-                    <td><?php echo $payment_info['payment_status'];?></td>
-                </tr>
+                
               </table>
         </div>
     </div>

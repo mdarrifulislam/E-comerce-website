@@ -47,7 +47,7 @@ if (isset($_POST['btn_save'])) {
                     <div class="control-group">
                         <label class="control-label" for="selectError3">Publication Status</label>
                         <div class="controls">
-                            <select id="selectError3" name="publication_status" value="<?php category_info['publication_status'];?>" >
+                            <select id="selectError3" name="publication_status" value="<?php echo category_info['publication_status'];?>" >
                                 <option>--------Publication Status--------</option>
                                 <option value="0">Unpublish</option>
                                 <option value="1">Publish</option>

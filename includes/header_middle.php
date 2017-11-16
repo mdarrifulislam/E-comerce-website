@@ -11,31 +11,11 @@ if (isset($_GET['status'])) {
         <div class="row">
             <div class="col-sm-4">
                 <div class="logo pull-left">
-                       <a href="index.php" style="font-size: 20px;color: #000">Online Shopping</a> <!-- <img src="assets/font_end_assets/images/home/logo.png" alt="" />-->
+                 <h1><a href="index.php" style="font-size: 20px;color: #000"> <span style="color: #002a80;">Online - </span>Shopping</a></h1> <!-- <img src="assets/font_end_assets/images/home/logo.png" alt="" />-->
                 </div>
-                <div class="btn-group pull-right">
-                    <!--                                <div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                                            USA
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Canada</a></li>
-                                                            <li><a href="#">UK</a></li>
-                                                        </ul>
-                                                    </div>-->
+                <!--           <div class="btn-group pull-right">
+                            style="color: #002a80;-->
 
-                    <!--                                <div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                                            DOLLAR
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Canadian Dollar</a></li>
-                                                            <li><a href="#">Pound</a></li>
-                                                        </ul>
-                                                    </div>-->
-                </div>
             </div>
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
@@ -50,9 +30,12 @@ if (isset($_GET['status'])) {
                         if ($customer_id) {
                             ?>
                             <li><a href="?status=logout"><i class="fa fa-lock"></i> Logout</a></li>
-                            <?php } else { ?>    
+                        <?php } else { ?>    
                             <li><a href="login.php"><i class="fa fa-lock"></i> Login/SignUp</a></li>
-                           <?php } ?>
+                        <?php } ?>
+                        <?php if (isset($_SESSION['customer_id'])) { ?>
+                            <li><a href="profile.php"><i class="fa fa-male"></i> My Profile</a></li>
+                            <?php } ?>
                     </ul>
                 </div>
             </div>

@@ -38,7 +38,7 @@ class Admin {
                 session_start();
                 $_SESSION['admin_name']=$admin_info['admin_name'];
                 $_SESSION['admin_id']=$admin_info['admin_id'];
-                header("Location: admin_master.php");
+                header("Location:admin_master.php");
             } else {
                 $message = "Please, use valid email address and password";
                 return $message;

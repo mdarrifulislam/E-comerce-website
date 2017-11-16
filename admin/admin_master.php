@@ -1,13 +1,10 @@
 <?php
 ob_start();
-
 session_start();
 $admin_id = $_SESSION['admin_id'];
 if ($admin_id == NULL) {
     header("Location: index.php");
 }
-
-
 require '../classes/super_admin.php';
 $obj_super_admin = new Super_admin();
 if (isset($_GET['status'])) {
@@ -138,6 +135,23 @@ if (isset($_GET['status'])) {
                         case 'edit_product':
                             include './pages/edit_product_content.php';
                             break;
+                        case 'sub_category':
+                            include './pages/sub_category_content.php';
+                            break;
+                        case 'manage_sub_category':
+                            include './pages/manage_sub_category_content.php';
+                            break;
+                        case 'edit_sub_category':
+                            include './pages/edit_sub_category_content.php';
+                            break;
+                        case 'edit_order':
+                            include './pages/edit_order_content.php';
+                            break;
+                        case 'customer_message':
+                            include './pages/customer_message_content.php';
+                            break;
+                        
+                    
                         
                     }
                 }  else {
