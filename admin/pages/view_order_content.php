@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="box-content">
-            <h1 style="color: green;">Customer Information</h1>
+            <h2 class="text-center">Customer Information</h2>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <tr>
                     <th>Customer Name</th>
@@ -50,7 +50,7 @@
                 
             </table>            
             
-            <h1 style="color: green;">Shipping Information</h1>
+            <h2 class="text-center">Shipping Information</h2>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <tr>
                     <th>Customer Name</th>
@@ -74,7 +74,7 @@
                 </tr>
               </table>
             
-            <h1 style="color: green;">Product Information</h1>
+            <h2 class="text-center">Product Information</h2>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <tr>
                     
@@ -97,7 +97,7 @@
                  </tr>
                 <?php } ?>
              </table>
-            <h1 style="color: green;">Payment Information</h1>
+            <h2 class="text-center">Payment Information</h2>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <tr>
                     <th>Payment Type</th>

@@ -93,11 +93,11 @@ $query_result = $obj_super_admin->select_all_category();
                                 
                                 <?php if($category_info['publication_status'] ==1){?>
                                 <a class="btn btn-success" href="?status=unpublish&&id=<?php echo $category_info['category_id']; ?>" title="unpublish">
-                                    <i class="halflings-icon white arrow-down"></i>  
+                                    <i class="halflings-icon white thums-up"></i>  
                                 </a>
                                 <?php } else { ?>
                                 <a class="btn btn-danger" href="?status=publish&&id=<?php echo $category_info['category_id']; ?>" title="publish">
-                                    <i class="halflings-icon white arrow-up"></i>  
+                                    <i class="halflings-icon white thums-up"></i>  
                                 </a>
                                 <?php }?>
                                 <a class="btn btn-info" href="edit_category.php?id=<?php echo $category_info['category_id']; ?>" title="Edit">

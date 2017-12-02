@@ -1,7 +1,7 @@
 <div id="sidebar-left" class="span2">
     <div class="nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
-           	
+           <li><a href="register_admin.php"><i class="icon-envelope"></i><span class="hidden-tablet">Register Admin</span></a></li>	
             <li><a href="category.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Category</span></a></li>
             <li><a href="manage.php"><i class="icon-tasks"></i><span class="hidden-tablet">Manage Category</span></a></li>
 

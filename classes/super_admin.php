@@ -15,8 +15,18 @@ class Super_admin {
             die('Connection Fail' . mysqli_error($this->db_connect));
         }
     }
+    public function save_admin_info($data){
+        $password= md5($data['password']);
+       $sql = "INSERT INTO tbl_admin(admin_name,email_address,password) VALUES('$data[admin_name]','$data[email_address]','$password')";
+        if (mysqli_query($this->db_connect, $sql)) {
+            $message = "Admin info save successfully";
+            return $message;
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        } 
+    }
 
-    public function save_category_info($data) {
+        public function save_category_info($data) {
         $sql = "INSERT INTO tbl_category(category_name,category_description,publication_status) VALUES('$data[category_name]','$data[category_description]','$data[publication_status]')";
         if (mysqli_query($this->db_connect, $sql)) {
             $message = "Category info save successfully";

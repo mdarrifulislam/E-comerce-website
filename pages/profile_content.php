@@ -35,11 +35,12 @@ if (isset($_SESSION['customer_id'])) {
 
 </table>
 
-<table  width='70%' style="margin-left: 100px; margin-top: 50px;margin-bottom: 50px; border: 2px dotted #0088cc;" cellpadding='15' align="center">
-    <tr style="border: 2px dotted #0088cc;">
+<table  width='70%' style="margin-left: 100px; margin-top: 50px;margin-bottom: 50px; border: 2px solid #0088cc;" cellpadding='15' align="center">
+    <tr style="border: 2px solid #0088cc;">
         <th>Ordered Product</th>
         <th>Product Price</th>
         <th>Product Quantity</th>
+        <th>Product Name</th>
 
         <th>Order Status</th>
         <th>Order total</th>
@@ -51,6 +52,7 @@ if (isset($_SESSION['customer_id'])) {
             <td><?php echo $order_info['product_name']; ?></td>
             <td><?php echo $order_info['product_price']; ?></td>
             <td><?php echo $order_info['product_quantity']; ?></td>
+            <td><?php echo $order_info['product_name'] ?></td>
             <td><?php echo $order_info['order_status'] ?></td>
             <td><?php echo $order_info['order_total'] ?></td>
             <td><?php echo $order_info['order_date'] ?></td>

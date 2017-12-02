@@ -150,6 +150,9 @@ if (isset($_GET['status'])) {
                         case 'customer_message':
                             include './pages/customer_message_content.php';
                             break;
+                        case 'register_admin':
+                            include './pages/register_admin_content.php';
+                            break;
                         
                     
                         

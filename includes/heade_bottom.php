@@ -17,15 +17,8 @@ $sub_query_result = $obj_app->select_all_sub_category();
                 <div class="mainmenu pull-left">
                     <ul class="nav navbar-nav collapse navbar-collapse">
                         <li><a href="index.php" class="dropdown">Home</a></li>
-                     <?php while ($category_info = mysqli_fetch_assoc($query_result)) { ?>
-                            <li>
-                                <a href="category.php?id=<?php echo $category_info['category_id']; ?>">
-                                    <?php echo $category_info['category_name']; ?>
-                                </a>
-                            </li>
-                        <?php } ?>
-                            <li>
-                            <a href="our_product.php"><span class="caret"></span> </a>
+                        <li>
+                            <a href="our_product.php">Sub Categories<span class="caret"></span> </a>
                             <ul role="menu" class="sub-menu">
                                 <?php while ($sub_category_info = mysqli_fetch_assoc($sub_query_result)) { ?>
                                     <li style="">
@@ -36,7 +29,19 @@ $sub_query_result = $obj_app->select_all_sub_category();
                                <?php } ?>
                             </ul>
                         </li>
+                        
+                        
+                     <?php while ($category_info = mysqli_fetch_assoc($query_result)) { ?>
+                            <li>
+                                <a href="category.php?id=<?php echo $category_info['category_id']; ?>">
+                                    <?php echo $category_info['category_name']; ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                            
                           <li><a href="contact_us.php">Contact us</a></li>
+                          
+                          
                        </ul>
                 </div>
             </div>

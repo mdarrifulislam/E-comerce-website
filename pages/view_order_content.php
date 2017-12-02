@@ -53,12 +53,12 @@ $obj_super_admin=new Super_admin();
                 
             </table>            
             
-            <h3 class="text-center">Shipping Information</h3>  
+            <h3 class="text-center">Shipping Information</h3>  <h4  class="text-right"><a href="edit_shipping_info.php?id=<?php echo $shipping_info['shipping_id'];?>">Click to edit shipping info</a></h4>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <tr>
                     <th>Customer Name</th>
                     <td><?php echo $shipping_info['full_name'];?></td>
-                </tr>
+                 </tr>
                 <tr>
                     <th>Email Address</th>
                     <td><?php echo $shipping_info['email_address'];?></td>

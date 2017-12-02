@@ -96,7 +96,7 @@ $query_result = $obj_app->select_cart_product_by_session_id($session_id);
                     <th>Vat Total: </th>
                     <th class="pull-right">BDT 
                         <?php
-                        $vat = ($sum * 15) / 100;
+                        $vat = ($sum * 10) / 100;
                         echo $vat;
                         ?>
                     </th>

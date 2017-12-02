@@ -63,6 +63,17 @@ class Application {
             die("Query Problem" . mysqli_error($this->db_connect));
         }
     }
+    public function select_published_product_by_manufacturer_id($manufacturer_id){
+        $sql = "SELECT * FROM tbl_product WHERE manufacturer_id='$manufacturer_id' AND publication_status=1";
+        if (mysqli_query($this->db_connect, $sql)) {
+            $query_result = mysqli_query($this->db_connect, $sql);
+            return $query_result;
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        }
+    }
+    
+
     public function select_published_sub_product_by_id($sub_category_id){
         $sql = "SELECT * FROM tbl_product WHERE sub_category_id='$sub_category_id' AND publication_status=1";
         if (mysqli_query($this->db_connect, $sql)) {
@@ -181,6 +192,15 @@ class Application {
             die("Query Problem" . mysqli_error($this->db_connect));
         }
     }
+    public function select_shipping_info_by_id($shipping_id){
+        $sql = "SELECT * FROM tbl_shipping WHERE shipping_id='$shipping_id' ";
+        if (mysqli_query($this->db_connect, $sql)) {
+            $query_result = mysqli_query($this->db_connect, $sql);
+            return $query_result;
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        }
+    }
 
     public function save_shipping_info($data) {
         $sql = "INSERT INTO tbl_shipping (full_name,email_address,address,phone_number,district_name) VALUES ('$data[full_name]','$data[email_address]','$data[address]','$data[phone_number]','$data[district_name]')";
@@ -193,6 +213,16 @@ class Application {
 
 
             header("Location: payment.php");
+        } else {
+            die("Query Problem" . mysqli_error($this->db_connect));
+        }
+    }
+    public function update_shipping_info($data){
+        $sql = "UPDATE tbl_shipping SET full_name='$data[full_name]',email_address='$data[email_address]',  address='$data[address]',phone_number='$data[phone_number]',district_name='$data[district_name]' WHERE shipping_id='$data[shipping_id]' ";
+        if (mysqli_query($this->db_connect, $sql)) {
+
+            $_SESSION['message'] = 'Shipping info updated successfully';
+            header("Location:profile.php");
         } else {
             die("Query Problem" . mysqli_error($this->db_connect));
         }

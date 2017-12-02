@@ -84,7 +84,7 @@ if (isset($_GET['search_string'])) {
                             <div class="product-image-wrapper">
                                 <div class="single-products"> 
                                     <div class="productinfo text-center">
-                                        <img src="assets/<?php echo $product_info['product_image']; ?>" alt="" width="200px" height="200px"/>
+                                        <img src="assets/<?php echo $product_info['product_image']; ?>" alt="" width="200" height="200px"/>
                                         <p>BDT<?php echo $product_info['product_price']; ?></p>
                                         <h3><?php echo $product_info['product_name']; ?></h3>
                                         <a href="#" class="btn btn-default add-to-cart"></i>Product Details</a>

@@ -631,8 +631,7 @@
             <i class="icon-calendar"></i>
             <p>Calendar</p>
         </a>
-
-        <div class="clearfix"></div>
+<div class="clearfix"></div>
 
     </div><!--/row-->
 

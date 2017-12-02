@@ -72,6 +72,10 @@ $obj_app = new Application();
                 include './pages/get_voucher_content.php';
             }elseif ($pages == 'view_order') {
                 include './pages/view_order_content.php';
+            }elseif ($pages == 'manufacturer') {
+                include './pages/manufacturer_content.php';
+            }elseif ($pages == 'edit_shipping_info') {
+                include './pages/edit_shipping_info_content.php';
             }
             
             
